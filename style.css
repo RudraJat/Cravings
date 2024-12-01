@@ -1,0 +1,51 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo{
+   width: 100px; 
+   padding: 10px 10px;
+}
+
+.nav-items > ul{
+    padding: 10px 10px 0px 0px;
+    display: flex;
+    list-style-type: none;
+    font-size: 22px;
+}
+
+.nav-items > ul > li{
+    padding: 6px;
+    margin: 10px;
+}
+
+.restro-card{
+    padding: 5px;
+    margin : 5px;
+    width: 195px;
+    height: 310px;
+ 
+}
+
+
+.restro-container{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+}
+
+.restro-card:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.Search{
+    padding: 10px;
+}
+
+.restro-logo{
+    width: 100%;
+}
