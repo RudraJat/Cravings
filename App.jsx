@@ -44,17 +44,17 @@ const Header =()=>{
     );
 };
 
-const RestaurantCard = () =>{
+const RestaurantCard = (props) =>{
     return(
         <div className="restro-card" style={{ backgroundColor: "#f0f0f0"}}>
             <img 
             className="restro-logo"
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/h7oibtpm7kqks8cqz3gh" 
             alt="restro-logo" />
-            <h3>Meghana Food</h3>
-            <h5>Momos, North India, Indian</h5>
-            <h5>4.3 star</h5>
-            <h5>38 mins</h5>
+            <h3>{props.restroName}</h3>
+            <h5>{props.cuisine}</h5>
+            <h5>{props.rating}</h5>
+            <h5>{props.delTime}</h5>
         </div>
     );
 };
@@ -66,13 +66,18 @@ const Body = () => {
                 Search
             </div>
             <div className="restro-container">
-                 <RestaurantCard/>
-                 <RestaurantCard/>
-                 <RestaurantCard/>
-                 <RestaurantCard/>
-                 <RestaurantCard/>
-                 <RestaurantCard/>
-                 <RestaurantCard/>
+                 <RestaurantCard 
+                 restroName="Meghana Foods"
+                 cuisine="Biryani, North Indian, Asian"
+                 rating="4.3"
+                 delTime="36 mins"
+                 />
+                 <RestaurantCard 
+                 restroName="KFC"
+                 cuisine="Burger, Fast Food"
+                 rating="4.4"
+                 delTime="25 mins"
+                 />
             </div>
         </div>
     );
