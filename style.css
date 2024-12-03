@@ -25,10 +25,14 @@
     padding: 5px;
     margin : 5px;
     width: 195px;
-    height: 310px;
+    height: 360px;
  
 }
 
+.restro-card:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
 
 .restro-container{
     height: 100%;
@@ -37,10 +41,6 @@
     /* justify-content: center; */
 }
 
-.restro-card:hover{
-    cursor: pointer;
-    border: 1px solid black;
-}
 
 .Search{
     padding: 10px;

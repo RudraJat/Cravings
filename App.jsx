@@ -51,7 +51,7 @@ const RestaurantCard = (props) =>{
         <div className="restro-card" style={{ backgroundColor: "#f0f0f0"}}>
             <img 
             className="restro-logo"
-            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/h7oibtpm7kqks8cqz3gh" 
+            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/enj3srsnhbltbom2ovvh" 
             alt="restro-logo" />
             <h3>{resData.info.name}</h3>
             <h5>{resData.info.cuisines.join(", ")}</h5>
