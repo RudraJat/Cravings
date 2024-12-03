@@ -54,7 +54,7 @@ const RestaurantCard = (props) =>{
             src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/h7oibtpm7kqks8cqz3gh" 
             alt="restro-logo" />
             <h3>{resData.info.name}</h3>
-            <h5>{resData.info.cuisines}</h5>
+            <h5>{resData.info.cuisines.join(", ")}</h5>
             <h5>{resData.info.avgRating}</h5>
             <h5>{resData.info.costForTwo}</h5>
             <h5>{resData.info.sla.deliveryTime}</h5>
