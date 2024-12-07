@@ -47,19 +47,29 @@ const Header =()=>{
 const RestaurantCard = (props) =>{
     const {resData}=props;
 
+    //destructuring the code
+
+    const {cloudinaryImageId,
+      name,
+      cuisines,
+      avgRating,
+      costForTwo,
+      deliveryTime,
+     }=resData?.info;
+
     return(
         <div className="restro-card" style={{ backgroundColor: "#f0f0f0"}}>
             <img 
             className="restro-logo"
             src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+
-            resData.info.cloudinaryImageId 
+            cloudinaryImageId 
             }
             alt="restro-logo" />
-            <h3>{resData.info.name}</h3>
-            <h5>{resData.info.cuisines.join(", ")}</h5>
-            <h5>{resData.info.avgRating}</h5>
-            <h5>{resData.info.costForTwo}</h5>
-            <h5>{resData.info.sla.deliveryTime}</h5>
+            <h3>{name}</h3>
+            <h5>{cuisines.join(", ")}</h5>
+            <h5>{avgRating}</h5>
+            <h5>{costForTwo}</h5>
+            <h5>{deliveryTime}</h5>
         </div>
     );
 };
@@ -919,7 +929,7 @@ const resList= [{
     "type": "WEBLINK"
   },
   "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
-}]
+}];
 
 const Body = () => {
     return(
@@ -934,6 +944,8 @@ const Body = () => {
                  <RestaurantCard resData={resList[3]}/>
                  <RestaurantCard resData={resList[4]}/>
                  <RestaurantCard resData={resList[5]}/>
+                 <RestaurantCard resData={resList[6]}/>
+                 <RestaurantCard resData={resList[7]}/>
             </div>
         </div>
     );
