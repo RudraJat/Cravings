@@ -21,7 +21,7 @@ const RestaurantCard = (props) =>{
             alt="restro-logo" />
             <h3>{name}</h3>
             <h5>{cuisines.join(", ")}</h5>
-            <h5>{avgRating}</h5>
+            <h5>{avgRating} stars</h5>
             <h5>{costForTwo}</h5>
             <h5>{deliveryTime}</h5>
         </div>
