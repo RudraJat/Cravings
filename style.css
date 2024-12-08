@@ -5,8 +5,13 @@
 }
 
 .logo{
-   width: 100px; 
+   width: 9rem; 
    padding: 10px 10px;
+}
+
+.logo:hover{
+    cursor: pointer;
+    border: 1px solid white;
 }
 
 .nav-items > ul{
