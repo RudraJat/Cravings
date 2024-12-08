@@ -1,27 +1,9 @@
 // Correct import for React 18
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Header from "./components/Header.jsx";
+// import Header from "./components/Body.jsx";
 
-
-
-const Header =()=>{
-    return(
-        <div className="header">
-            <div className="logo-container">
-                <img className="logo"
-                src="https://thumbs.dreamstime.com/z/food-delivery-logo-template-vector-icon-illustration-170869600.jpg?ct=jpeghttps://img.freepik.com/free-vector/food-shopping-logo-template-design_460848-10299.jpg?t=st=1733669565~exp=1733673165~hmac=e3ba00400eac324d94b4ce8eeae5a082203a12d95607037a238db8ac0bd2bd8a&w=900" alt="Logo" />
-            </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    );
-};
 
 const RestaurantCard = (props) =>{
     const {resData}=props;
@@ -909,30 +891,34 @@ const resList= [
     "type": "WEBLINK"
   },
   "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
-}];
+}
+];
 
 const Body = () => {
-    return(
-        <div className="body">
-            <div className="Search">
-                Search
-            </div>
-            <div className="restro-container">
-                 {
-                  resList.map((restaurant)=>(
-                    <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
-                  ))}
-            </div>
-        </div>
-    );
+  return(
+      <div className="body">
+          <div className="Search">
+              Search
+          </div>
+          <div className="restro-container">
+               {
+                resList.map((restaurant)=>(
+                  <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+                ))}
+          </div>
+      </div>
+  );
 };
+
+
 
 const AppLayout = () =>{
     return <div className="app">
         <Header/>
-        <Body/>
+        <Body />
     </div>
 }
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
  
 root.render(<AppLayout/>);
