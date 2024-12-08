@@ -1,9 +1,11 @@
+import { LOGO_URL } from "../utils/constants";
+
 const Header =()=>{
     return(
         <div className="header">
             <div className="logo-container">
                 <img className="logo"
-                src="https://thumbs.dreamstime.com/z/food-delivery-logo-template-vector-icon-illustration-170869600.jpg?ct=jpeghttps://img.freepik.com/free-vector/food-shopping-logo-template-design_460848-10299.jpg?t=st=1733669565~exp=1733673165~hmac=e3ba00400eac324d94b4ce8eeae5a082203a12d95607037a238db8ac0bd2bd8a&w=900" alt="Logo" />
+                src= {LOGO_URL} alt="Logo" />
             </div>
             <div className="nav-items">
                 <ul>
