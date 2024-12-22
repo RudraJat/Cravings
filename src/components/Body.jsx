@@ -1,33 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
-// import resList from "../utils/mockData";
+import resList from "../utils/mockData";
 import { useState  } from "react"; 
 
 const Body = () => {
 
   //Local State Variable - Super powerful variable
-  const [listOfRestaurants, setListOfRestaurants]=useState([{
-    "info": {
-      "id": "234875",
-      "name": "Adil Hotel",
-      "cloudinaryImageId": "gp1ityra6utvzqn6ghnv",
-      "costForTwo": "₹150 for two",
-      "cuisines": [
-        "North Indian",
-        "Biryani",
-        "Tandoor"],
-        "avgRating": 3.4}
-    },{
-    "info": {
-      "id": "234876",
-      "name": "Jat Hotel",
-      "cloudinaryImageId": "gp1ityra6utvzqn6ghnv",
-      "costForTwo": "₹150 for two",
-      "cuisines": [
-        "North Indian",
-        "Biryani",
-        "Tandoor"],
-        "avgRating": 4.3}
-    }]);
+  const [listOfRestaurants, setListOfRestaurants]=useState(resList);
      
   return (
     <div className="body">
@@ -40,7 +18,7 @@ const Body = () => {
             );
 
             setListOfRestaurants(filteredList);
-            
+
             console.log(filteredList);
           }}
         >
