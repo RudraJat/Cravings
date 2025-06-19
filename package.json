@@ -14,7 +14,7 @@
   "license": "ISC",
   "author": "Rudrapratap Singh Jat",
   "type": "commonjs",
-  "main": "index.js",
+  
   "scripts": {
     "test": "jest"
   },
