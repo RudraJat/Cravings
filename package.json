@@ -1,0 +1,25 @@
+{
+  "name": "dawat-e",
+  "version": "1.0.0",
+  "description": "Starting to learn React",
+  "keywords": [
+    "React",
+    "namaste",
+    "react"
+  ],
+  "homepage": "https://github.com/RudraJat/Dawat-e#readme",
+  "bugs": {
+    "url": "https://github.com/RudraJat/Dawat-e/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RudraJat/Dawat-e.git"
+  },
+  "license": "ISC",
+  "author": "Rudrapratap Singh Jat",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
