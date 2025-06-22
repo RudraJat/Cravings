@@ -17,14 +17,16 @@ const parent=React.createElement("div",{id:"parent"},
     )
 );
 
+
 //FUNCTIONAL COMPONENT
 const Heading = ()=>{
     return <h1>Namaste react functional component</h1>
-}
+};
 
 // const heading = React.createElement("h1", {id: "heading"}, "Welcome to React");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-
+//FOR RENDERING FUNCTIONAL COMPONENT
+root.render(<Heading />);
 root.render(parent);
