@@ -30,8 +30,11 @@ const Heading = ()=>(
     <div>
 
     {/* COMPONENT COMPOSITION */}
+    {/* We can use any of this way to call a function inside a component */}
     <Title/>
-    
+    {Title()}
+    <Title></Title>
+
     {/* Like this we can use JS inside of JSX */}
     <h2>{300+200}</h2>
 
