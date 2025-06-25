@@ -1,7 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const jsxHeading=<h1 id="heading"> Namaste React </h1>;
+
+const Header = () => {
+    return(
+        <div className="header">
+            <div className="logo">
+
+            </div>
+        </div>
+    )
+}
+const AppLayout=()=>{
+    return(
+        <div className="app-layout">
+
+        </div>
+    )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
  
