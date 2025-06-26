@@ -41,6 +41,11 @@ const Body=()=>{
             <div className="res-container">
                 {/* restaurant container */}
                 <RestaurantCard/>
+                <RestaurantCard/>
+                <RestaurantCard/>
+                <RestaurantCard/>
+                <RestaurantCard/>
+                <RestaurantCard/>
             </div>
         </div>
     )
