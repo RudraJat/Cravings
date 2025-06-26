@@ -1,0 +1,9 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-img{
+    width: 120px;
+    height: 120px;
+}
