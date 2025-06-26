@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-
 const Header = () => {
-    return(
-        <div className="header">
-            <div className="logo">
-
-            </div>
-        </div>
-    )
-}
-const AppLayout=()=>{
-    return(
-        <div className="app-layout">
-
-        </div>
-    )
-}
+  return (
+    <div className="header">
+      <div className="logo">
+        <img
+          src="https://file.aiquickdraw.com/imgcompressed/img/compressed_1de531cc9e3f6d6015240aafc950996c.webp"
+          alt="logo-img"
+        />
+      </div>
+    </div>
+  );
+};
+const AppLayout = () => {
+  return <div className="app-layout"></div>;
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
- 
+
 root.render(jsxHeading);
