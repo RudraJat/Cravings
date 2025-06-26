@@ -1,16 +1,20 @@
 Building my first React project....
 
-<!-- HEADER 
-  -Logo
-  -Nav Items -->
+BASIC STRUCTURE OF OUR WEBSITE
+HEADER 
+  -Logo 
+  -Nav Items
 
-<!-- BODY
+BODY
   -Search
   -RestaurantContainer
-  -RestaurantCard -->
+  -RestaurantCard
 
-<!-- FOOTER 
+FOOTER 
   -Copyright
   -Links
   -Address
-  -Contact -->
+  -Contact
+
+TO-DO LIST FOR CRAVINGS
+1. WHEN WE SCROLL DOWN AND RESTAURANT-CARD OPTIONS COMES FROM THERE THE NAV-BAR SHOULD CHANGE AND IT SHOULD SHOW THE FILTER OPTION ON BASIS OF PRICE LIKE 100-150RUPEE OR 200-300RUPPE AND SO ON...
