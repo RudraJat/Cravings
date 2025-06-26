@@ -23,170 +23,259 @@ const Header = () => {
   );
 };
 
-const RestaurantCard=(props)=>{
-  const {resData}=props;
-  return(
-        <div className="res-card">
-            <img className="res-img" src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/2469fa88ee9b0b5d1366ba88f2a7fa7f" alt="ich-coff-img" />
-            <h3>{resData.info.name}</h3>
-            <h4>{resData.info.cuisines}</h4>
-            <h4>{resData.info.avgRating} stars</h4>
-            <h4>Cost for Two: 776{resData.info.aggregatedDiscountInfoV3.subHeader}</h4>
-        </div>
-    )
+const RestaurantCard = (props) => {
+  const { resData } = props;
+  return (
+    <div className="res-card">
+      <img
+        className="res-img"
+        src={
+          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+          resData.card.card.info.cloudinaryImageId
+        }
+        alt="company-logo"
+      />
+      <h3>{resData.card.card.info.name}</h3>
+      <h4>{resData.card.card.info.cuisines.join(", ")}</h4>
+      <h4>{resData.card.card.info.avgRating} stars</h4>
+      <h4>{resData.card.card.info.aggregatedDiscountInfoV3.subHeader}</h4>
+      <h4>{resData.card.card.info.sla.deliveryTime} mins</h4>
+    </div>
+  );
 };
 
-const resObj = {
-  "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
-  "info": {
-    "id": "458043",
-    "name": "The Biryani Life",
-    "cloudinaryImageId": "rcs6ktj03q4zymbv4joy",
-    "locality": "University Road",
-    "areaName": "City Center",
-    "costForTwo": "₹400 for two",
-    "cuisines": [
-      "Biryani",
-      "Mughlai",
-      "Lucknowi",
-      "Hyderabadi",
-      "Kebabs",
-      "Desserts",
-      "Beverages"
-    ],
-    "avgRating": 4.3,
-    "parentId": "8496",
-    "avgRatingString": "4.3",
-    "totalRatingsString": "1.1K+",
-    "promoted": true,
-    "adTrackingId": "cid=30440359~p=0~adgrpid=30440359#ag1~mp=SWIGGY_IN~bl=FOOD~aet=RESTAURANT~aeid=458043~plpr=COLLECTION~eid=bd1fa525-1393-44b7-b797-d3f16d2090f9~srvts=1750948041890~collid=83639",
-    "sla": {
-      "deliveryTime": 20,
-      "lastMileTravel": 2.8,
-      "serviceability": "SERVICEABLE",
-      "slaString": "20-25 mins",
-      "lastMileTravelString": "2.8 km",
-      "iconType": "ICON_TYPE_EMPTY"
-    },
-    "availability": {
-      "nextCloseTime": "2025-06-26 23:59:00",
-      "opened": true
-    },
-    "badges": {
-      "imageBadges": [
-        {
-          "imageId": "bolt/big%20rx%20listing%2015%20mins%20.png",
-          "description": "bolt!"
-        }
-      ]
-    },
-    "isOpen": true,
-    "type": "F",
-    "badgesV2": {
-      "entityBadges": {
-        "imageBased": {
-          "badgeObject": [
-            {
-              "attributes": {
-                "imageId": "bolt/big%20rx%20listing%2015%20mins%20.png",
-                "description": "bolt!"
-              }
-            }
-          ]
-        },
-        "textExtendedBadges": {
-          
-        },
-        "textBased": {
-          
+const resList = [
+  {
+    card: {
+      card: {
+        info: {
+          id: "458043",
+          name: "The Biryani Life",
+          cloudinaryImageId: "rcs6ktj03q4zymbv4joy",
+          locality: "University Road",
+          areaName: "City Center",
+          costForTwo: "₹400 for two",
+          cuisines: [
+            "Biryani",
+            "Mughlai",
+            "Lucknowi",
+            "Hyderabadi",
+            "Kebabs",
+            "Desserts",
+            "Beverages"
+          ],
+          avgRating: 4.3,
+          sla: {
+            deliveryTime: 20
+          },
+          aggregatedDiscountInfoV3: {
+            header: "ITEMS",
+            subHeader: "AT ₹159"
+          }
         }
       }
-    },
-    "aggregatedDiscountInfoV3": {
-      "header": "ITEMS",
-      "subHeader": "AT ₹159",
-      "logoCtx": {
-        "text": "BENEFITS"
-      }
-    },
-    "orderabilityCommunication": {
-      "title": {
-        
-      },
-      "subTitle": {
-        
-      },
-      "message": {
-        
-      },
-      "customIcon": {
-        
-      },
-      "commsStyling": {
-        
-      }
-    },
-    "differentiatedUi": {
-      "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
-      "differentiatedUiMediaDetails": {
-        "mediaType": "ADS_MEDIA_ENUM_IMAGE",
-        "lottie": {
-          
-        },
-        "video": {
-          
+    }
+  },
+  {
+    card: {
+      card: {
+        info: {
+          id: "443860",
+          name: "The Tandoori Knights & Biryani House",
+          cloudinaryImageId: "0f20b7d7c291fa49aac57966eda4729d",
+          locality: "Patel Nagar",
+          areaName: "City Center",
+          costForTwo: "₹300 for two",
+          cuisines: [
+            "Biryani"
+          ],
+          avgRating: 4.6,
+          sla: {
+            deliveryTime: 25
+          },
+          aggregatedDiscountInfoV3: {
+            header: "10% OFF",
+            subHeader: "UPTO ₹40"
+          }
         }
       }
-    },
-    "reviewsSummary": {
-      
-    },
-    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
-    "restaurantOfferPresentationInfo": {
-      
-    },
-    "externalRatings": {
-      "aggregatedRating": {
-        "rating": "--"
+    }
+  },
+  {
+    card: {
+      card: {
+        info: {
+          id: "458038",
+          name: "Behrouz Biryani",
+          cloudinaryImageId: "1a8dfa8b2a73ddf7c6193465ab24c898",
+          locality: "University Road",
+          areaName: "City Center",
+          costForTwo: "₹500 for two",
+          cuisines: [
+            "Biryani",
+            "Kebabs",
+            "Mughlai",
+            "Beverages",
+            "Desserts"
+          ],
+          avgRating: 4.4,
+          sla: {
+            deliveryTime: 26
+          },
+          aggregatedDiscountInfoV3: {
+            header: "ITEMS",
+            subHeader: "AT ₹199"
+          }
+        }
       }
-    },
-    "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY",
-    "campaignId": "30440359"
+    }
   },
-  "analytics": {
-    
+  {
+    card: {
+      card: {
+        info: {
+          id: "553833",
+          name: "Biryani By Kilo",
+          cloudinaryImageId: "RX_THUMBNAIL/IMAGES/VENDOR/2024/12/4/5fc715d3-7178-453f-9ce0-42186b71020a_553833.JPG",
+          locality: "Patel Nagar",
+          areaName: "City Center",
+          costForTwo: "₹499 for two",
+          cuisines: [
+            "Biryani",
+            "Hyderabadi",
+            "North Indian",
+            "Kebabs",
+            "Mughlai",
+            "Desserts"
+          ],
+          avgRating: 4.3,
+          sla: {
+            deliveryTime: 50
+          },
+          aggregatedDiscountInfoV3: {
+            header: "ITEMS",
+            subHeader: "AT ₹149"
+          }
+        }
+      }
+    }
   },
-  "cta": {
-    "link": "swiggy://menu?restaurant_id=458043&source=collection&query=Biryani",
-    "text": "RESTAURANT_MENU",
-    "type": "DEEPLINK"
+  {
+    card: {
+      card: {
+        info: {
+          id: "1030965",
+          name: "Thalaiva Biryani",
+          cloudinaryImageId: "FOOD_CATALOG/IMAGES/CMS/2025/5/9/1f848952-c178-4d83-8325-0e962b033df5_49856f61-1181-4d59-a464-4aa382edf0d8.jpeg",
+          locality: "University Road",
+          areaName: "City Center",
+          costForTwo: "₹400 for two",
+          cuisines: [
+            "Biryani",
+            "Mughlai",
+            "Lucknowi",
+            "Hyderabadi",
+            "Kebabs",
+            "Desserts",
+            "Beverages"
+          ],
+          avgRating: 4.5,
+          sla: {
+            deliveryTime: 21
+          },
+          aggregatedDiscountInfoV3: {
+            header: "ITEMS",
+            subHeader: "AT ₹89"
+          }
+        }
+      }
+    }
   },
-  "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food",
-  "relevance": {
-    "type": "RELEVANCE_TYPE_ON_MENU_RETURN",
-    "sectionId": "MENU_RETURN_FOOD"
+  {
+    card: {
+      card: {
+        info: {
+          id: "775093",
+          name: "Rice House",
+          cloudinaryImageId: "640b2b5a8a5602b6bdfe0ba922a90d36",
+          locality: "Dwarkapuri",
+          areaName: "Lashkar",
+          costForTwo: "₹499 for two",
+          cuisines: [
+            "Biryani",
+            "Indian"
+          ],
+          avgRating: 4.6,
+          sla: {
+            deliveryTime: 29
+          },
+          aggregatedDiscountInfoV3: {
+            header: "",
+            subHeader: ""
+          }
+        }
+      }
+    }
+  },
+  {
+    card: {
+      card: {
+        info: {
+          id: "458042",
+          name: "The Good Bowl",
+          cloudinaryImageId: "RX_THUMBNAIL/IMAGES/VENDOR/2024/11/15/36f2d72a-8023-4bfc-affe-ed91446daebb_458042.jpg",
+          locality: "University Road",
+          areaName: "City Center",
+          costForTwo: "₹200 for two",
+          cuisines: [
+            "Biryani",
+            "North Indian",
+            "Pastas",
+            "Punjabi",
+            "Desserts",
+            "Beverages"
+          ],
+          avgRating: 4.4,
+          sla: {
+            deliveryTime: 22
+          },
+          aggregatedDiscountInfoV3: {
+            header: "",
+            subHeader: ""
+          }
+        }
+      }
+    }
   }
-};
+];
 
-const Body=()=>{
-    return(
-        <div className="body">
-            <div className="search">Search</div>
-            <div className="res-container">
-                {/* restaurant container */}
-                <RestaurantCard resData={resObj}/>
-            </div>
-        </div>
-    )
-};
+function Body() {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        {/* restaurant container */}
+        <RestaurantCard resData={resList[0]} />
+        <RestaurantCard resData={resList[1]} />
+        <RestaurantCard resData={resList[2]} />
+        <RestaurantCard resData={resList[3]} />
+        <RestaurantCard resData={resList[4]} />
+        <RestaurantCard resData={resList[5]} />
+        <RestaurantCard resData={resList[6]} />
+      </div>
+    </div>
+  );
+}
 
 const AppLayout = () => {
-  return <div className="app-layout">
-    <Header/>
-    <Body/>
-  </div>;
+  return (
+    <div className="app-layout">
+      <Header />
+      <Body />
+    </div>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout/>);
+root.render(<AppLayout />);
