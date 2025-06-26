@@ -1,16 +1,23 @@
 .header{
     display: flex;
     justify-content: space-between;
+    background-color: rgb(253, 252, 252);
 }
 
 .logo-img{
+    /* border: 1px solid black; */
+    margin-left:20px;
     width: 130px;
-    height: 130px;
+    height: 135px;
 }
 
 .nav-list{
+    /* border: 1px solid black; */
+    font-size: 24px;
+    margin-top:35px;
+    margin-right: 50px;
     display: flex;
-    gap: 20px;
+    gap: 70px;
 }
 
 .nav-list > div{
