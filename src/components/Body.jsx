@@ -20,8 +20,9 @@ function Body() {
     console.log(json);
   };
 
-  if (listOfRestaurants.length ===0){
-    return <Shimmer/>
+  // Conditional Rendering- shows different UI components or content based on a condition (like if/else).
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
   }
 
   return (
