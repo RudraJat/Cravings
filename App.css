@@ -126,3 +126,59 @@ body {
     font-weight: 500;
 }
 
+/* ...existing code... */
+
+.shimmer-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.shimmer-card {
+    width: 300px;
+    height: 420px;
+    border-radius: 16px;
+    background: #f3f4f6;
+    box-shadow: 0 4px 24px rgba(99,102,241,0.08), 0 1.5px 6px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    padding: 18px 16px 14px 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-img {
+    width: 100%;
+    height: 170px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #ececec 25%, #f5f5f5 50%, #ececec 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-line {
+    height: 18px;
+    width: 80%;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #d8d7d7 25%, #d5d5d5 50%, #c9c9c9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+.shimmer-line.short {
+    width: 50%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+/* ...existing code... */
