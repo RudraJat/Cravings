@@ -1,5 +1,4 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 
 
