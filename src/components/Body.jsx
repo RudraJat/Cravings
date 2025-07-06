@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 
 function Body() {
-  const [listOfRestaurants, setlistOfRestaurants] = useState(resList);
+  const [listOfRestaurants, setlistOfRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -29,7 +29,7 @@ function Body() {
           className="btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => res.card.card.info.avgRating > 4.3
+              (res) => res.info.avgRating > 4.3
             );
             setlistOfRestaurants(filteredList);
           }}
