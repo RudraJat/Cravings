@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 function Body() {
+  // useState is a React Hook that lets you add state to function components.
+  // It returns an array with two elements: the current state value and a function to update
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
+  const [filteredRestaurants, setfilteredRestaurants] = useState([]);
 
   const [searchText, setsearchText] = useState("");
 
@@ -18,6 +21,10 @@ function Body() {
     );
     const json = await data.json();
     setlistOfRestaurants(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+
+    setfilteredRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     console.log(json);
@@ -41,11 +48,24 @@ function Body() {
             type="text"
             value={searchText}
             onChange={(e) => {
-              setsearchText(e.target.value) ;
+              setsearchText(e.target.value);
             }}
           />
-          <button className="search-btn" onClick={() => {}}>Search</button>
+
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredRestaurant = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+
+              setfilteredRestaurants(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
         </div>
+
         <button
           className="filter-btn"
           onClick={() => {
@@ -60,7 +80,7 @@ function Body() {
       </div>
       <div className="res-container">
         {/* restaurant container */}
-        {listOfRestaurants
+        {filteredRestaurants
           .filter((res) => res?.info)
           .map((restaurant) => (
             <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
