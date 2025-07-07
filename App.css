@@ -99,6 +99,11 @@ body {
     position: relative;
 }
 
+.res-card-footer {
+    display: flex;
+    gap:140px;
+}
+
 .res-card:hover {
     cursor: pointer;
     transform: translateY(-8px) scale(1.03);
