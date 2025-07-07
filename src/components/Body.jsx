@@ -4,7 +4,7 @@ import Shimmer from "./Shimmer";
 
 function Body() {
   // useState is a React Hook that lets you add state to function components.
-  // It returns an array with two elements: the current state value and a function to update
+  // It returns an array with two elements: the current state value and a function to update 
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [filteredRestaurants, setfilteredRestaurants] = useState([]);
 
