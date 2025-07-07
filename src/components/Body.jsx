@@ -5,6 +5,9 @@ import Shimmer from "./Shimmer";
 function Body() {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
 
+  const [searchText, setsearchText] = useState("");
+
+  // useEffect is a React Hook that lets you perform side effects in function components.
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,7 +27,7 @@ function Body() {
   // if (listOfRestaurants.length === 0) {
   //   return <Shimmer />;
   // }
-  
+
   // OR
 
   return listOfRestaurants.length === 0 ? (
@@ -32,9 +35,19 @@ function Body() {
   ) : (
     <div className="body">
       {/* <div className="search">Search</div> */}
-      <div className="filter-btn">
+      <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => {
+              setsearchText(e.target.value) ;
+            }}
+          />
+          <button className="search-btn" onClick={() => {}}>Search</button>
+        </div>
         <button
-          className="btn"
+          className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4.3
