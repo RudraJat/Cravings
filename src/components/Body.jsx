@@ -1,10 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 function Body() {
   // useState is a React Hook that lets you add state to function components.
-  // It returns an array with two elements: the current state value and a function to update 
+  // It returns an array with two elements: the current state value and a function to update
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [filteredRestaurants, setfilteredRestaurants] = useState([]);
 
@@ -27,7 +28,7 @@ function Body() {
     setfilteredRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    
+
     console.log(json);
   };
 
@@ -84,7 +85,13 @@ function Body() {
         {filteredRestaurants
           .filter((res) => res?.info)
           .map((restaurant) => (
-            <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+            <Link
+              key={restaurant?.info?.id}
+              to={"/restaurantMenu/" + restaurant?.info?.id}
+            >
+              {" "}
+              <RestaurantCard resData={restaurant} />
+            </Link>
           ))}
       </div>
     </div>
