@@ -197,10 +197,19 @@ body {
 }
 
 .user{
-    margin: 20px;
+    margin: 10px;
     padding: 10px;
     height: 150px;
-    width: 200px;
+    width: 97%;
+    background-color: #c4c4c4;
+    border: black 1px solid;
+}
+
+.user-class{
+    margin: 10px;
+    padding: 10px;
+    height: 150px;
+    width: 97%;
     background-color: #c4c4c4;
     border: black 1px solid;
 }
