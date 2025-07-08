@@ -9,14 +9,30 @@ class UserClass extends React.Component {
     
     // this.state = {
     //   count: 0,
-    // };
+    // }; 
+
+    this.state={
+        userInfo:{
+            name: "Dummy",
+            location: "Dummy Location",
+            avatar_url: "Dummy URL",
+        },
+    }
   }
 
-  componentDidCatch(){
+ async componentDidMount(){
     //API calls
+    const data = await fetch("https://api.github.com/users/RudraJat");
+    const json = await data.json();
+
+    this.setState({
+        userInfo: json,
+    });
+    // console.log(json);
   }
+
   render() {
-    const { name, location } = this.props;
+    const { name, location, avatar_url } = this.state.userInfo;
     // const { count } = this.state;
 
     return (
@@ -31,9 +47,14 @@ class UserClass extends React.Component {
         >
           Count Increase
         </button> */}
+        <div>
         <h2>Name: {name}</h2>
         <h3>Location: {location}</h3>
         <h4>Contact: 1234567890</h4>
+        </div>
+        <div>
+            <img className="avatar" src={avatar_url} alt="Avatar" />
+        </div>
       </div>
     );
   }
