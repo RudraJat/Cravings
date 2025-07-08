@@ -28,6 +28,7 @@ function Body() {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     
+    console.log(json);
   };
 
   // Conditional Rendering- shows different UI components or content based on a condition (like if/else).
