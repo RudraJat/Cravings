@@ -195,4 +195,12 @@ body {
         background-position: 200% 0;
     }
 }
-/* ...existing code... */
+
+.user{
+    margin: 20px;
+    padding: 10px;
+    height: 150px;
+    width: 200px;
+    background-color: #c4c4c4;
+    border: black 1px solid;
+}
