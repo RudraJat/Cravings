@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 function Body() {
   // useState is a React Hook that lets you add state to function components.
@@ -32,6 +33,8 @@ function Body() {
     console.log(json);
   };
 
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus === false) return <h1>Looks like you are offline. Please check your internet connection.</h1>;
   // Conditional Rendering- shows different UI components or content based on a condition (like if/else).
   // if (listOfRestaurants.length === 0) {
   //   return <Shimmer />;
