@@ -74,7 +74,7 @@ function Body() {
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4.3
             );
-            setlistOfRestaurants(filteredList);
+            setfilteredRestaurants(filteredList); // <-- update this line
           }}
         >
           Rating above 4.3⭐
