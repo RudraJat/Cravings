@@ -21,6 +21,7 @@ const RestaurantMenu = () => {
 
     setresInfo(json?.data);
   };
+  
   if (resInfo === null) return <Shimmer />;
 
   const { name, cuisines, avgRating, costForTwoMessage, deliveryTime } =
