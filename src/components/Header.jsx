@@ -22,26 +22,41 @@ const Header = () => {
 
       {/* Navigation */}
       <nav className="flex items-center gap-6 text-gray-700 font-semibold">
+        {/* 1. Online Status */}
         <span className="text-sm font-bold">
           Online Status: {onlineStatus ? "🟢" : "🔴"}
         </span>
 
-        {[{ to: "/", label: "Home" }, { to: "/contact", label: "Contact" }, { to: "/about", label: "About" }].map(
-          (link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="hover:bg-white hover:text-green-600 hover:shadow-md font-bold px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105"
-            >
-              {link.label}
-            </Link>
-          )
-        )}
+        {/* 2. Home */}
+        <Link
+          to="/"
+          className="hover:bg-white hover:text-green-600 hover:shadow-md font-bold px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105"
+        >
+          Home
+        </Link>
 
+        {/* 3. Cart */}
         <div className="hover:bg-white hover:text-green-600 hover:shadow-md px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105 cursor-pointer">
           Cart 🛒
         </div>
 
+        {/* 4. About Us */}
+        <Link
+          to="/about"
+          className="hover:bg-white hover:text-green-600 hover:shadow-md font-bold px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105"
+        >
+          About Us
+        </Link>
+
+        {/* 5. Contact Us */}
+        <Link
+          to="/contact"
+          className="hover:bg-white hover:text-green-600 hover:shadow-md font-bold px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105"
+        >
+          Contact Us
+        </Link>
+
+        {/* 6. Login/Logout Button */}
         <button
           onClick={() =>
             setloginBtn(loginBtn === "Login" ? "Logout" : "Login")
