@@ -1,16 +1,167 @@
-// import User from "./User";
-import UserClass from "./UserClass";
+import { useEffect, useState } from "react";
+import { Mail, Phone, Github, Linkedin } from "lucide-react";
 
-const About = () =>{
+const GITHUB_USERNAME = "RudraJat";
+
+const About = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("about");
+
+  useEffect(() => {
+    fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) {
     return (
-        <div>
-            
-            <h1>About Us</h1>
-            <p>We are a food delivery service dedicated to bringing you the best meals from your favorite restaurants.</p>
-            {/* <User name="RudraFunction" location="GwaliorFunction"/> */}
-            <UserClass name="RudraClass" location="GwaliorClass"/>
-        </div>
+      <div className="pt-32 min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-green-500"></div>
+      </div>
     );
+  }
+
+  if (!user || user.message === "Not Found") {
+    return (
+      <div className="pt-32 min-h-screen flex items-center justify-center text-gray-600">
+        GitHub user not found.
+      </div>
+    );
+  }
+
+  return (
+    <div className="pt-28 pb-20 min-h-screen bg-gradient-to-br from-gray-100 via-white to-gray-200 px-4 sm:px-8 md:px-16">
+      <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-10 md:p-16 text-center">
+        {/* Avatar */}
+        <img
+          src={user.avatar_url}
+          alt={user.name}
+          className="w-28 h-28 rounded-full mx-auto mb-6 shadow-lg ring-4 ring-green-400"
+        />
+
+        {/* Name */}
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-green-600 mb-6">
+          {user.name || user.login}
+        </h1>
+
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-8">
+          {["about", "skills", "experience"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                activeTab === tab
+                  ? "bg-green-500 text-white shadow-md hover:bg-white hover:text-green-600 hover:border hover:border-green-500"
+                  : "bg-gray-100 text-gray-600 hover:shadow-md"
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === "about" && (
+          <>
+            <p className="text-gray-700 text-md leading-relaxed mb-10">
+              Passionate developer with a love for creating beautiful and
+              functional web applications. Always eager to learn and explore new
+              technologies. Specialized in modern web development practices and
+              user-centric design principles.
+            </p>
+
+            {/* Contact Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-gray-600 max-w-xl mx-auto">
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+                <Mail className="w-5 h-5 text-green-500" />
+                <span>rps9827256181@gmail.com</span>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+                <Phone className="w-5 h-5 text-green-500" />
+                <span>+91 81030 00577</span>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+                <Github className="w-5 h-5 text-green-500" />
+                <a
+                  href="https://github.com/RudraJat"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline"
+                >
+                  github.com/RudraJat
+                </a>
+              </div>
+
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+                <Linkedin className="w-5 h-5 text-green-500" />
+                <a
+                  href="https://linkedin.com/in/rudrapratap"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:underline"
+                >
+                  linkedin.com/in/rudrapratap
+                </a>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeTab === "skills" && (
+          <div className="grid sm:grid-cols-2 gap-4 text-left text-sm sm:text-base text-gray-700">
+            <div>
+              <h4 className="font-bold mb-2 text-green-600">Frontend</h4>
+              <ul className="list-disc list-inside">
+                <li>React</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-2 text-green-600">Backend</h4>
+              <ul className="list-disc list-inside">
+                <li>PHP</li>
+                <li>SQL</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-2 text-green-600">Tools</h4>
+              <ul className="list-disc list-inside">
+                <li>Git</li>
+                <li>VS Code</li>
+                <li>Figma</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "experience" && (
+          <div className="text-left text-gray-700 space-y-3">
+            <h4 className="font-bold text-green-600 text-lg">
+              FullStack Developer
+            </h4>
+            <p className="text-sm font-semibold">Apni Hi Company Hai</p>
+            <p className="text-sm text-gray-500">2024 - Present</p>
+            <p className="text-sm mt-2">
+              Developed responsive and high-performance web applications using
+              React and Node.js. Focused on building clean UI architecture,
+              integrating REST APIs, and maintaining production-level
+              deployments.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default About;
