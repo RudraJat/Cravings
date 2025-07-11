@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-50 via-green-100 to-green-200 shadow-md flex justify-between items-center px-8 py-0.5 rounded-b-xl">
       {/* Logo */}
-      <div className="flex items-center">
+      <div className="flex items-center px-20">
         <Link to="/">
           <img
             src={LOGO_URL}
