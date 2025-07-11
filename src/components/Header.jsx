@@ -8,14 +8,14 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-50 via-green-100 to-green-200 shadow-md flex justify-between items-center px-8 py-0.5 rounded-b-xl">
+    <header className="fixed h-25 top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-50 via-green-100 to-green-200 shadow-md flex justify-between items-center px-8 py-0.5 rounded-b-xl">
       {/* Logo */}
       <div className="flex items-center px-20">
         <Link to="/">
           <img
             src={LOGO_URL}
             alt="logo-img"
-            className="h-20 w-auto rounded-lg"
+            className="h-20 w-auto rounded-lg transition-transform duration-300 ease-in-out transform hover:scale-125"
           />
         </Link>
       </div>
@@ -58,9 +58,7 @@ const Header = () => {
 
         {/* 6. Login/Logout Button */}
         <button
-          onClick={() =>
-            setloginBtn(loginBtn === "Login" ? "Logout" : "Login")
-          }
+          onClick={() => setloginBtn(loginBtn === "Login" ? "Logout" : "Login")}
           className={`px-5 py-1.5 rounded-full text-sm font-bold shadow-md transition-all duration-300 transform hover:scale-105 ${
             loginBtn === "Login"
               ? "bg-green-500 hover:bg-white text-white hover:text-green-600"
