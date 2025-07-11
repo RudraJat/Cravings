@@ -70,93 +70,114 @@ const About = () => {
         {activeTab === "about" && (
           <>
             <p className="text-gray-700 text-md leading-relaxed mb-10">
-              Passionate developer with a love for creating beautiful and
-              functional web applications. Always eager to learn and explore new
-              technologies. Specialized in modern web development practices and
-              user-centric design principles.
+              Crafting elegant, high-performance web experiences with a passion
+              for design and detail. I turn ideas into seamless, user-centric
+              digital solutions.
             </p>
 
             {/* Contact Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm text-gray-600 max-w-xl mx-auto">
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+              {/* Email */}
+              <a
+                href="mailto:rps9827256181@gmail.com"
+                className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm transition-all duration-300 hover:shadow-lg hover:ring-2 hover:ring-green-400 hover:bg-white"
+              >
                 <Mail className="w-5 h-5 text-green-500" />
                 <span>rps9827256181@gmail.com</span>
-              </div>
+              </a>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+              {/* Phone */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm transition-all duration-300 hover:shadow-lg hover:ring-2 hover:ring-green-400 hover:bg-white">
                 <Phone className="w-5 h-5 text-green-500" />
                 <span>+91 81030 00577</span>
               </div>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+              {/* GitHub */}
+              <a
+                href="https://github.com/RudraJat"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm transition-all duration-300 hover:shadow-lg hover:ring-2 hover:ring-green-400 hover:bg-white"
+              >
                 <Github className="w-5 h-5 text-green-500" />
-                <a
-                  href="https://github.com/RudraJat"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:underline"
-                >
-                  github.com/RudraJat
-                </a>
-              </div>
+                <span>github.com/RudraJat</span>
+              </a>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:shadow-md transition-all duration-300">
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com/in/rudrapratap-singh-jat"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center gap-3 shadow-sm transition-all duration-300 hover:shadow-lg hover:ring-2 hover:ring-green-400 hover:bg-white"
+              >
                 <Linkedin className="w-5 h-5 text-green-500" />
-                <a
-                  href="https://linkedin.com/in/rudrapratap"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:underline"
-                >
-                  linkedin.com/in/rudrapratap
-                </a>
-              </div>
+                <span>linkedin.com/in/rudrapratap-singh-jat</span>
+              </a>
             </div>
           </>
         )}
 
+        {/* Skills */}
         {activeTab === "skills" && (
-          <div className="grid sm:grid-cols-2 gap-4 text-left text-sm sm:text-base text-gray-700">
-            <div>
-              <h4 className="font-bold mb-2 text-green-600">Frontend</h4>
-              <ul className="list-disc list-inside">
-                <li>React</li>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-2 text-green-600">Backend</h4>
-              <ul className="list-disc list-inside">
-                <li>PHP</li>
-                <li>SQL</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-2 text-green-600">Tools</h4>
-              <ul className="list-disc list-inside">
-                <li>Git</li>
-                <li>VS Code</li>
-                <li>Figma</li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm text-gray-700 max-w-4xl mx-auto">
+            {/* Card Template */}
+            {[
+              {
+                title: "Frontend",
+                skills: ["React", "HTML5", "CSS3", "JavaScript"],
+              },
+              {
+                title: "Backend",
+                skills: ["PHP", "SQL"],
+              },
+              {
+                title: "Tools",
+                skills: ["Git", "VS Code", "Figma"],
+              },
+            ].map((section, index) => (
+              <div
+                key={index}
+                className="group bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-md transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-xl hover:border-green-500 hover:ring-2 hover:ring-green-200"
+              >
+                <h4 className="text-lg font-bold text-center text-green-600 group-hover:text-green-700 transition-colors duration-300">
+                  {section.title}
+                </h4>
+                <ul className="mt-4 list-disc list-inside space-y-2 text-gray-600 group-hover:text-gray-800 transition-all duration-300">
+                  {section.skills.map((skill, i) => (
+                    <li
+                      key={i}
+                      className="hover:text-green-600 hover:translate-x-1 transition-all duration-300 ease-in-out"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         )}
 
+        {/* Experience */}
         {activeTab === "experience" && (
-          <div className="text-left text-gray-700 space-y-3">
-            <h4 className="font-bold text-green-600 text-lg">
-              FullStack Developer
-            </h4>
-            <p className="text-sm font-semibold">Apni Hi Company Hai</p>
-            <p className="text-sm text-gray-500">2024 - Present</p>
-            <p className="text-sm mt-2">
-              Developed responsive and high-performance web applications using
-              React and Node.js. Focused on building clean UI architecture,
-              integrating REST APIs, and maintaining production-level
-              deployments.
-            </p>
+          <div className="max-w-3xl mx-auto space-y-6">
+            <div className="group bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-md transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl hover:border-green-500 hover:ring-2 hover:ring-green-200">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2">
+                <h4 className="text-xl font-bold text-green-600 group-hover:text-green-700 transition-colors duration-300">
+                  FullStack Developer
+                </h4>
+                <span className="text-sm text-gray-500">2024 - Present</span>
+              </div>
+              <p className="text-sm font-medium text-gray-600 mb-1">
+                Apni Hi Company Hai
+              </p>
+              <p className="text-sm text-gray-700 group-hover:text-gray-800 transition-colors duration-300 mt-3 leading-relaxed">
+                Engineered elegant, high-performance web platforms using React. Led end-to-end development of intuitive UIs and
+                scalable architecture, ensuring pixel-perfect design, seamless
+                user experience, and lightning-fast performance. Passionate
+                about innovation, rapid iteration, and delivering impact through
+                clean, modern code.
+              </p>
+            </div>
           </div>
         )}
       </div>

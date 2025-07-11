@@ -5,7 +5,7 @@ const RestaurantCard = ({ resData }) => {
     resData.info;
 
   return (
-    <div className="bg-white/70 backdrop-blur-lg border border-green-100 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex flex-col justify-between">
+    <div className="bg-white/70 hover:bg-green-50 backdrop-blur-lg border border-green-100 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 flex flex-col justify-between">
       {/* Image */}
       <img
         src={CDN_URL + cloudinaryImageId}

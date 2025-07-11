@@ -37,10 +37,10 @@ function Body() {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body pt-28 min-h-screen bg-green-100 px-6 md:px-16 pb-10">
+    <div className="body pt-28 min-h-screen bg-green-0 px-6 md:px-16 pb-10">
       {/* Search & Filter Section */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-        <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg w-full max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 border border-green-100">
+        <div className="bg-green-50 backdrop-blur-md p-6 rounded-2xl shadow-lg w-full max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 border border-green-100">
           {/* Search Form */}
           <form
             onSubmit={(e) => {
@@ -57,7 +57,7 @@ function Body() {
               placeholder="Search restaurants..."
               value={searchText}
               onChange={(e) => setsearchText(e.target.value)}
-              className="px-5 py-3 rounded-xl border border-gray-300 shadow-inner focus:outline-none focus:ring-2 focus:ring-green-400 w-full md:w-80 text-sm"
+              className="px-5 py-3 rounded-xl border bg-white/70 border-gray-300 shadow-inner focus:outline-none focus:ring-2 focus:ring-green-400 w-full md:w-80 text-sm"
             />
             <button
               type="submit"
