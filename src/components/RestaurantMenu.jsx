@@ -1,4 +1,4 @@
-import Shimmer from "./Shimmer";
+import ShimmerMenu from "./ShimmerMenu";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
   // 🔥 Open the first category by default
   const [showIndex, setShowIndex] = useState(0);
 
-  if (!resInfo) return <Shimmer />;
+  if (!resInfo) return <ShimmerMenu />;
 
   const {
     name,
