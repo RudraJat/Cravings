@@ -7,13 +7,18 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+import Footer from "./components/Footer.jsx";
 
 const AppLayout = () => {
   return (
-    <div className="app-layout">
-      <Header />
-      <Outlet />
-    </div>
+    <div className="min-h-screen flex flex-col">
+  <Header />
+  <main className="flex-grow">
+    <Body />
+  </main>
+  <Footer />
+</div>
+
   );
 };
 

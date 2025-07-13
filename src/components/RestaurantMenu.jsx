@@ -1,14 +1,15 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
-import RestaurantCategory from "./RestaurantCategory"; // 👈 Import your new component
+import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
 
-  const [showIndex, setShowIndex] = useState(null);
+  // 🔥 Open the first category by default
+  const [showIndex, setShowIndex] = useState(0);
 
   if (!resInfo) return <Shimmer />;
 
@@ -30,7 +31,7 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="pt-28 pb-14 px-6 md:px-20 bg-gradient-to-br from-green-50 via-green-100 to-green-200 min-h-screen">
+    <div className="pt-28 pb-14 px-6 md:px-20 bg-gradient-to-br from-green-50 via-green-50 to-green-100 min-h-screen">
       {/* Header */}
       <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 w-full max-w-4xl mx-auto mb-10">
         <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-3">

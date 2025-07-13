@@ -5,38 +5,48 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 function Body() {
-  const [listOfRestaurants, setlistOfRestaurants] = useState([]);
-  const [filteredRestaurants, setfilteredRestaurants] = useState([]);
-  const [searchText, setsearchText] = useState("");
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2124007&lng=78.1772053&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
+    try {
+      setLoading(true);
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.2124007&lng=78.1772053&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
 
-    const restaurants =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      const restaurants =
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
 
-    setlistOfRestaurants(restaurants);
-    setfilteredRestaurants(restaurants);
+      setListOfRestaurants(restaurants);
+      setFilteredRestaurants(restaurants);
+    } catch (error) {
+      console.error("Failed to fetch restaurant data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const onlineStatus = useOnlineStatus();
-  if (onlineStatus === false)
+  if (!onlineStatus) {
     return (
       <h1 className="text-center text-red-600 text-xl mt-32 font-bold">
         🔴 You are offline. Please check your internet connection.
       </h1>
     );
+  }
 
-  return listOfRestaurants.length === 0 ? (
-    <Shimmer />
-  ) : (
+  if (loading) return <Shimmer />;
+
+  return (
     <div className="body pt-28 min-h-screen bg-green-0 px-6 md:px-16 pb-10">
       {/* Search & Filter Section */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
@@ -48,7 +58,7 @@ function Body() {
               const filtered = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setfilteredRestaurants(filtered);
+              setFilteredRestaurants(filtered);
             }}
             className="flex items-center gap-3 w-full md:w-auto"
           >
@@ -56,7 +66,7 @@ function Body() {
               type="text"
               placeholder="Search restaurants..."
               value={searchText}
-              onChange={(e) => setsearchText(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
               className="px-5 py-3 rounded-xl border bg-white/70 border-gray-300 shadow-inner focus:outline-none focus:ring-2 focus:ring-green-400 w-full md:w-80 text-sm"
             />
             <button
@@ -74,7 +84,7 @@ function Body() {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4.3
               );
-              setfilteredRestaurants(filteredList);
+              setFilteredRestaurants(filteredList);
             }}
           >
             ⭐ Rating 4.3+
@@ -82,11 +92,14 @@ function Body() {
         </div>
       </div>
 
-      {/* Restaurant Cards Grid */}
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {filteredRestaurants
-          .filter((res) => res?.info)
-          .map((restaurant) => (
+      {/* Restaurant Cards Grid or Empty State */}
+      {filteredRestaurants.length === 0 ? (
+        <div className="text-center text-gray-600 text-lg font-medium mt-20">
+          😕 No restaurants found.
+        </div>
+      ) : (
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filteredRestaurants.map((restaurant) => (
             <Link
               key={restaurant?.info?.id}
               to={"/restaurantMenu/" + restaurant?.info?.id}
@@ -95,7 +108,8 @@ function Body() {
               <RestaurantCard resData={restaurant} />
             </Link>
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
