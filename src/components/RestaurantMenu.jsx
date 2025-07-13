@@ -1,10 +1,14 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory"; // 👈 Import your new component
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(null);
 
   if (!resInfo) return <Shimmer />;
 
@@ -59,66 +63,16 @@ const RestaurantMenu = () => {
       <div className="w-full max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-green-700 mb-6">📋 Explore Menu</h2>
 
-        {categories?.map((category) => {
-          const items = category?.card?.card?.itemCards;
-          if (!items?.length) return null;
-
-          return (
-            <div key={category.card.card.title} className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4 border-b-2 border-green-300 pb-1">
-                {category.card.card.title}
-              </h3>
-
-              <div className="space-y-4">
-                {items.map((item) => {
-                  const {
-                    id,
-                    name,
-                    price,
-                    defaultPrice,
-                    finalPrice,
-                    description,
-                    imageId,
-                  } = item.card.info;
-
-                  const displayPrice =
-                    (finalPrice || defaultPrice || price) / 100;
-
-                  return (
-                    <div
-                      key={id}
-                      className="flex justify-between items-start bg-white shadow-md border border-green-100 rounded-2xl px-4 py-4 hover:shadow-xl transition duration-300"
-                    >
-                      {/* Left Text Info */}
-                      <div className="w-3/4">
-                        <h4 className="text-lg font-semibold text-gray-900">
-                          {name}
-                        </h4>
-                        {description && (
-                          <p className="text-sm text-gray-500 mt-1">
-                            {description}
-                          </p>
-                        )}
-                        <p className="mt-2 text-green-700 font-bold">
-                          ₹{displayPrice || "N/A"}
-                        </p>
-                      </div>
-
-                      {/* Right Image (Optional) */}
-                      {imageId && (
-                        <img
-                          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_120,h_100/${imageId}`}
-                          alt={name}
-                          className="rounded-xl object-cover w-24 h-20 ml-4 shadow"
-                        />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+        {categories?.map((category, index) => (
+          <RestaurantCategory
+            key={category.card.card.title}
+            data={category.card.card}
+            showItems={index === showIndex}
+            SetShowIndex={() =>
+              setShowIndex(index === showIndex ? null : index)
+            }
+          />
+        ))}
       </div>
     </div>
   );
