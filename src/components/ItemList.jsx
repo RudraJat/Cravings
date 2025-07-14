@@ -29,7 +29,7 @@ const ItemList = ({ items }) => {
               </p>
             </div>
             <div>
-            <div className="relative left-10 top-28">
+            <div className="relative left-10 top-27">
             <button className="p-1 px-6 bg-white rounded hover:bg-gray-100 font-bold  text-green-500 hover:scale-105 shadow-lg m-auto">ADD</button>
             </div>
               <div>
