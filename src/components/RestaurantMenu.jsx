@@ -62,13 +62,22 @@ const RestaurantMenu = () => {
 
       {/* Menu */}
       <div className="w-full max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold text-green-700 mb-6">📋 Explore Menu</h2>
+        <h2 className="text-2xl font-bold text-green-700 mb-6">
+          📋 Explore Menu
+        </h2>
 
         {categories?.map((category, index) => (
           <RestaurantCategory
             key={category.card.card.title}
             data={category.card.card}
             showItems={index === showIndex}
+            
+            // vese sbh restaurantCategory ki khud ki individual state hai to vo jabh ek ko kholenge to baaki band nhi hoge  but humne  uska control RestaurantMenu ko de diya hai to abh sbh sync me chl skti he
+            //abh RestaurantCategory ko khud se pata nhi chalega ki vo khuli he ya nhi
+            // to isliye humne showItems ko pass kiya he
+            // aur SetShowIndex ko bhi pass kiya he
+            //Abh RestaurantCategory Control Component ban gya he
+            // aur RestaurantMenu Presentational Component ban gya he
             SetShowIndex={() =>
               setShowIndex(index === showIndex ? null : index)
             }
