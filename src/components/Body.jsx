@@ -53,6 +53,7 @@ function Body() {
         <div className="bg-green-50 backdrop-blur-md p-6 rounded-2xl shadow-lg w-full max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 border border-green-100">
           {/* Search Form */}
           <form
+          
             onSubmit={(e) => {
               e.preventDefault();
               const filtered = listOfRestaurants.filter((res) =>
@@ -95,7 +96,7 @@ function Body() {
       {/* Restaurant Cards Grid or Empty State */}
       {filteredRestaurants.length === 0 ? (
         <div className="text-center text-gray-600 text-lg font-medium mt-20">
-          😕 No restaurants found.
+          🥺 No restaurants found.
         </div>
       ) : (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
