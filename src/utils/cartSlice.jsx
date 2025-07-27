@@ -7,6 +7,9 @@ const cartSlice = createSlice({
   },
 
   reducers: {
+    
+    //MUTATING the state - It is only possible in RTK not in previous redux(Vanilla)
+
     addItem: (state, action) => {
       const newItem = action.payload;
       const itemInfo = newItem.card?.info || newItem.info || newItem;
