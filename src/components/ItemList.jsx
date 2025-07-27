@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-
+import { addItem } from "../utils/cartSlice"
 const ItemList = ({ items }) => {
   return (
     <div className="mt-4 space-y-4">
@@ -20,7 +20,7 @@ const ItemList = ({ items }) => {
         const handleAddItem = () => {
 
           // Dispatch the addItem action to the Redux store
-          dispatch(addItem())
+          dispatch(addItem(item));
         }
         return (
           <div
@@ -39,7 +39,8 @@ const ItemList = ({ items }) => {
             <div>
             <div className="relative left-10 top-27">
             <button className="p-1 px-6 bg-white rounded hover:bg-gray-100 font-bold  text-green-500 hover:scale-105 shadow-lg m-auto"
-             onClick={handleAddItem}>
+             onClick={() => handleAddItem(item)}> 
+             {/* calling back function☝️  */}
               ADD
               </button>
             </div>

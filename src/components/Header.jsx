@@ -14,6 +14,7 @@ const Header = () => {
   // Subscribing to the store using Selector
   // This will re-render the component whenever the cart state changes
   const cartItems= useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <header className="fixed h-24 top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-50 via-green-100 to-green-200 shadow-md flex justify-between items-center px-8 py-0.5 rounded-b-xl">
