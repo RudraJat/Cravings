@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
+import { CDN_URL } from "../utils/constants";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -21,6 +22,7 @@ const RestaurantMenu = () => {
     totalRatingsString,
     sla,
     areaName,
+    cloudinaryImageId, // ✅ Extract image ID
   } = resInfo?.cards[2]?.card?.card?.info || {};
 
   const categories =
@@ -33,29 +35,39 @@ const RestaurantMenu = () => {
   return (
     <div className="pt-28 pb-14 px-6 md:px-20 bg-gradient-to-br from-green-50 via-green-50 to-green-100 min-h-screen">
       {/* Header */}
-      <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 w-full max-w-4xl mx-auto mb-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-3">
-          {name}
-        </h1>
+      <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 w-full max-w-4xl mx-auto mb-10 flex flex-col sm:flex-row sm:items-start gap-6">
+        {/* Restaurant Image */}
+        <img
+          src={CDN_URL + cloudinaryImageId}
+          alt={name}
+          className="w-full sm:w-40 h-40 object-cover rounded-2xl shadow-md"
+        />
 
-        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-700 mb-2">
-          <span className="bg-green-100 px-2 py-1 rounded-full text-green-700 font-semibold">
-            ⭐ {avgRating} ({totalRatingsString || "Ratings"})
-          </span>
-          <span>•</span>
-          <span className="font-medium">{costForTwoMessage}</span>
-        </div>
+        {/* Restaurant Info */}
+        <div className="flex-1">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-3">
+            {name}
+          </h1>
 
-        <div className="text-green-700 font-medium text-sm mb-3">
-          {cuisines?.join(", ")}
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:justify-between text-gray-500 text-sm">
-          <div className="flex items-center gap-1">
-            <span className="font-semibold text-gray-600">📍 {areaName}</span>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-700 mb-2">
+            <span className="bg-green-100 px-2 py-1 rounded-full text-green-700 font-semibold">
+              ⭐ {avgRating} ({totalRatingsString || "Ratings"})
+            </span>
+            <span>•</span>
+            <span className="font-medium">{costForTwoMessage}</span>
           </div>
-          <div className="flex items-center gap-1 mt-2 sm:mt-0">
-            ⏱ <span>{sla?.deliveryTime || "--"} mins</span>
+
+          <div className="text-green-700 font-medium text-sm mb-3">
+            {cuisines?.join(", ")}
+          </div>
+
+          <div className="flex flex-col sm:flex-row sm:justify-between text-gray-500 text-sm">
+            <div className="flex items-center gap-1">
+              <span className="font-semibold text-gray-600">📍 {areaName}</span>
+            </div>
+            <div className="flex items-center gap-1 mt-2 sm:mt-0">
+              ⏱ <span>{sla?.deliveryTime || "--"} mins</span>
+            </div>
           </div>
         </div>
       </div>
@@ -71,13 +83,6 @@ const RestaurantMenu = () => {
             key={category.card.card.title}
             data={category.card.card}
             showItems={index === showIndex}
-            
-            // vese sbh restaurantCategory ki khud ki individual state hai to vo jabh ek ko kholenge to baaki band nhi hoge  but humne  uska control RestaurantMenu ko de diya hai to abh sbh sync me chl skti he
-            //abh RestaurantCategory ko khud se pata nhi chalega ki vo khuli he ya nhi
-            // to isliye humne showItems ko pass kiya he
-            // aur SetShowIndex ko bhi pass kiya he
-            //Abh RestaurantCategory Control Component ban gya he
-            // aur RestaurantMenu Presentational Component ban gya he
             SetShowIndex={() =>
               setShowIndex(index === showIndex ? null : index)
             }
