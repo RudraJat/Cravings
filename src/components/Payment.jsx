@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { CreditCard, Lock, Check, Truck, CreditCardIcon } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../utils/cartSlice";
 
 const Payment = ({ onPaymentComplete = () => {} }) => {
+  const dispatch = useDispatch();
+
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [cardDetails, setCardDetails] = useState({
     number: "",
@@ -13,14 +17,15 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
   const [paymentComplete, setPaymentComplete] = useState(false);
 
   const formatCardNumber = (val) => {
-    const digits = val.replace(/\D/g, "").substring(0, 16);
-    return digits.replace(/(.{4})/g, "$1 ").trim();
+    const digitsOnly = val.replace(/\D/g, "").substring(0, 16);
+    return digitsOnly.replace(/(.{4})/g, "$1 ").trim();
   };
 
   const formatExpiry = (val) => {
-    const digits = val.replace(/\D/g, "").substring(0, 4);
-    if (digits.length < 3) return digits;
-    return digits.substring(0, 2) + "/" + digits.substring(2);
+    const digitsOnly = val.replace(/\D/g, "").substring(0, 4);
+    return digitsOnly.length > 2
+      ? digitsOnly.substring(0, 2) + "/" + digitsOnly.substring(2)
+      : digitsOnly;
   };
 
   const handleSubmit = (e) => {
@@ -30,12 +35,16 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
       const { number, expiry, cvv } = cardDetails;
       if (number.replace(/\s/g, "").length !== 16)
         return alert("Enter a valid 16-digit card number.");
-      if (expiry.length !== 5) return alert("Enter expiry in MM/YY format.");
+      if (expiry.length !== 5 || !/^\d{2}\/\d{2}$/.test(expiry))
+        return alert("Enter expiry in MM/YY format.");
       if (cvv.length !== 3) return alert("Enter valid 3-digit CVV.");
     } else {
       if (!cashDetails.name || !cashDetails.phone)
         return alert("Enter name and phone for COD.");
     }
+
+    // ✅ Clear the cart after successful payment
+    dispatch(clearCart());
 
     setPaymentComplete(true);
     setTimeout(() => onPaymentComplete(), 2000);
@@ -56,13 +65,11 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-green-50 to-pink-50 pt-28 pb-20 px-6 flex justify-center items-start">
       <div className="w-full max-w-xl bg-white/80 backdrop-blur-xl border border-pink-100 rounded-3xl shadow-2xl p-10">
-        {/* Header */}
         <div className="flex items-center justify-center gap-3 mb-10">
           <CreditCard className="text-green-600 w-10 h-10" />
           <h1 className="text-3xl font-extrabold text-green-700 tracking-wide">Complete Your Payment</h1>
         </div>
 
-        {/* Toggle Buttons */}
         <div className="flex justify-center gap-4 mb-8">
           <button
             onClick={() => setPaymentMethod("card")}
@@ -86,26 +93,19 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
           </button>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {paymentMethod === "card" ? (
             <>
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-1">Card Number</label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={cardDetails.number}
-                    onChange={(e) =>
-                      setCardDetails({ ...cardDetails, number: formatCardNumber(e.target.value) })
-                    }
-                    placeholder="1234 5678 9012 3456"
-                    maxLength="19"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
-                  />
-                  <Lock className="absolute right-3 top-1/2 -translate-y-1/2 text-green-400" />
-                </div>
+                <input
+                  type="text"
+                  value={cardDetails.number}
+                  onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
+                  placeholder="1234 5678 9012 3456"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                />
               </div>
 
               <div>
@@ -124,16 +124,13 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
                 <div className="w-1/2">
                   <label className="block text-sm font-semibold text-gray-700 mb-1">Expiry (MM/YY)</label>
                   <input
-                    type="text"
-                    value={cardDetails.expiry}
-                    onChange={(e) =>
-                      setCardDetails({ ...cardDetails, expiry: formatExpiry(e.target.value) })
-                    }
-                    placeholder="12/26"
-                    maxLength="5"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
-                  />
+                  type="text"
+                  value={cardDetails.expiry}
+                  onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
+                  placeholder="12/25"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-green-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                />
                 </div>
                 <div className="w-1/2">
                   <label className="block text-sm font-semibold text-gray-700 mb-1">CVV</label>
@@ -176,7 +173,6 @@ const Payment = ({ onPaymentComplete = () => {} }) => {
             </>
           )}
 
-          {/* Submit */}
           <button
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-green-600 via-green-500 to-green-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-xl hover:from-white hover:to-white hover:text-green-900 hover:border hover:border-green-400 transition-all duration-300"
