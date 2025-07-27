@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
-import { User } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import { useSelector } from "react-redux";
 
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
 
   // Subscribing to the store using Selector
   // This will re-render the component whenever the cart state changes
-  const cartItems= useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
 
   return (
@@ -45,9 +45,14 @@ const Header = () => {
         </Link>
 
         {/* 3. Cart */}
-        <div className="hover:bg-white hover:text-green-600 hover:shadow-md px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105 cursor-pointer">
-          Cart 🛒 {cartItems.length > 0 && <span className="text-green-600 font-bold">({cartItems.length})</span>}
-        </div>
+        {/* 3. Cart */}
+        <Link
+          to="/cart"
+          className="flex items-center gap-2 hover:bg-white hover:text-green-600 hover:shadow-md font-bold px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105"
+        >
+          <ShoppingCart size={18} className="text-green-600" />
+          <span>Cart ({cartItems.length})</span>
+        </Link>
 
         {/* 4. About Us */}
         <Link
@@ -76,23 +81,20 @@ const Header = () => {
         >
           {loginBtn}
         </button>
-        {
-  loginBtn === "Login" ? (
-    <div className="group relative flex items-center gap-3 px-4 py-0.5 rounded-full bg-white/70 backdrop-blur-md shadow-[0_4px_20px_rgba(0,128,0,0.2)] transition-all duration-300 ease-in-out hover:shadow-[0_6px_24px_rgba(0,128,0,0.3)] hover:scale-105 cursor-pointer">
-      <div className="bg-green-100 p-2 rounded-full border border-green-300 shadow-inner transition-transform group-hover:scale-110">
-        <User size={20} className="text-green-600" />
-      </div>
-      <span className="text-sm font-semibold text-gray-700 tracking-wide group-hover:text-green-700 transition-all duration-200">
-        {loggedInUser}
-      </span>
-      {/* Tooltip on hover */}
-      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-white bg-green-700 px-3 py-1 rounded shadow-lg pointer-events-none">
-        Logged in as {loggedInUser}
-      </div>
-    </div>
-  ) : null
-}
-
+        {loginBtn === "Login" ? (
+          <div className="group relative flex items-center gap-3 px-4 py-0.5 rounded-full bg-white/70 backdrop-blur-md shadow-[0_4px_20px_rgba(0,128,0,0.2)] transition-all duration-300 ease-in-out hover:shadow-[0_6px_24px_rgba(0,128,0,0.3)] hover:scale-105 cursor-pointer">
+            <div className="bg-green-100 p-2 rounded-full border border-green-300 shadow-inner transition-transform group-hover:scale-110">
+              <User size={20} className="text-green-600" />
+            </div>
+            <span className="text-sm font-semibold text-gray-700 tracking-wide group-hover:text-green-700 transition-all duration-200">
+              {loggedInUser}
+            </span>
+            {/* Tooltip on hover */}
+            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-white bg-green-700 px-3 py-1 rounded shadow-lg pointer-events-none">
+              Logged in as {loggedInUser}
+            </div>
+          </div>
+        ) : null}
       </nav>
     </header>
   );

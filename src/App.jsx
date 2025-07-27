@@ -2,14 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import Cart from "./components/Cart"
 import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Payment from "./components/Payment";
 import { createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+import appStore from "./utils/appStore.jsx";
 
 const AppLayout = () => {
   return (
@@ -36,6 +38,10 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/about",
         element: <About />,
       },
@@ -46,6 +52,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurantMenu/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       }
     ],
     errorElement: <Error />,
