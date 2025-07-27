@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 const ItemList = ({ items }) => {
   return (
     <div className="mt-4 space-y-4">
@@ -13,7 +15,13 @@ const ItemList = ({ items }) => {
         } = item.card.info;
 
         const displayPrice = (finalPrice || defaultPrice || price) / 100;
+      
+        const dispatch = useDispatch();
+        const handleAddItem = () => {
 
+          // Dispatch the addItem action to the Redux store
+          dispatch(addItem())
+        }
         return (
           <div
             key={id}
@@ -30,7 +38,10 @@ const ItemList = ({ items }) => {
             </div>
             <div>
             <div className="relative left-10 top-27">
-            <button className="p-1 px-6 bg-white rounded hover:bg-gray-100 font-bold  text-green-500 hover:scale-105 shadow-lg m-auto">ADD</button>
+            <button className="p-1 px-6 bg-white rounded hover:bg-gray-100 font-bold  text-green-500 hover:scale-105 shadow-lg m-auto"
+             onClick={handleAddItem}>
+              ADD
+              </button>
             </div>
               <div>
             {imageId && (

@@ -4,11 +4,16 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
 import { User } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [loginBtn, setloginBtn] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(userContext);
+
+  // Subscribing to the store using Selector
+  // This will re-render the component whenever the cart state changes
+  const cartItems= useSelector((store) => store.cart.items);
 
   return (
     <header className="fixed h-24 top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-50 via-green-100 to-green-200 shadow-md flex justify-between items-center px-8 py-0.5 rounded-b-xl">
@@ -40,7 +45,7 @@ const Header = () => {
 
         {/* 3. Cart */}
         <div className="hover:bg-white hover:text-green-600 hover:shadow-md px-3 py-1 rounded-md transition-all duration-200 transform hover:scale-105 cursor-pointer">
-          Cart 🛒
+          Cart 🛒 {cartItems.length > 0 && <span className="text-green-600 font-bold">({cartItems.length})</span>}
         </div>
 
         {/* 4. About Us */}
