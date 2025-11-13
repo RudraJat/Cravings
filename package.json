@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Starting to learn React",
   "keywords": [],
-  "homepage": "https://github.com/RudraJat/Dawat-e#readme",
+  "homepage": "https://github.com/RudraJat/Cravings#readme",
   "bugs": {
-    "url": "https://github.com/RudraJat/Dawat-e/issues"
+    "url": "https://github.com/RudraJat/Cravings/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RudraJat/Dawat-e.git"
+    "url": "git+https://github.com/RudraJat/Cravings.git"
   },
   "license": "ISC",
   "author": "Rudrapratap Singh Jat",
